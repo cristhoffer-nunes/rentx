@@ -5,10 +5,20 @@ import {
 } from "./ICategoriesRepository"
 
 class CategoriesRepository implements ICategoriesRepository {
+  private static INSTANCE: CategoriesRepository
+
   private categories: Category[]
 
-  constructor() {
+  private constructor() {
     this.categories = []
+  }
+
+  public static getInstance(): CategoriesRepository {
+    if (!CategoriesRepository.INSTANCE) {
+      CategoriesRepository.INSTANCE = new CategoriesRepository()
+    }
+
+    return CategoriesRepository.INSTANCE
   }
 
   create({ description, name }: ICreateCategoryDTO): void {
