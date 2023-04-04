@@ -6,21 +6,19 @@ import {
 } from "../ICategoriesRepository"
 
 class CategoriesRepository implements ICategoriesRepository {
-  private static INSTANCE: CategoriesRepository
-
   private repository: Repository<Category>
 
-  private constructor() {
+  constructor() {
     this.repository = getRepository(Category)
   }
 
-  public static getInstance(): CategoriesRepository {
-    if (!CategoriesRepository.INSTANCE) {
-      CategoriesRepository.INSTANCE = new CategoriesRepository()
-    }
+  // public static getInstance(): CategoriesRepository {
+  //   if (!CategoriesRepository.INSTANCE) {
+  //     CategoriesRepository.INSTANCE = new CategoriesRepository()
+  //   }
 
-    return CategoriesRepository.INSTANCE
-  }
+  //   return CategoriesRepository.INSTANCE
+  // }
 
   async create({ description, name }: ICreateCategoryDTO): Promise<void> {
     const category = this.repository.create({

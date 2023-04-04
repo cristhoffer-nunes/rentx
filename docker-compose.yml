@@ -24,10 +24,11 @@ services:
       - .:/usr/app
     networks:
       - app-connect
+    depends_on:
+      - database_ignite
 
 volumes:
   pgdata:
-
 networks:
   app-connect:
     driver: bridge
